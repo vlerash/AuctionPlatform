@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34408.163
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuctionPlatform", "AuctionPlatform\AuctionPlatform.csproj", "{E543C2F4-1E75-473E-8754-C14E85EA08A6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{33167B7E-41FD-487B-9E7F-864C4E18E49E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business", "Business", "{1B26561A-DF00-4DFC-A064-8D38C703154B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{D3C4C210-4523-47D8-B1A0-D30CFA1D02CB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuctionPlatform.Business", "AuctionPlatform.Business\AuctionPlatform.Business.csproj", "{1639A1F5-8E1F-482C-A24A-6B5C3677EAA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuctionPlatform.Domain", "AuctionPlatform.Domain\AuctionPlatform.Domain.csproj", "{C5997F87-9E8F-4413-B83C-F8DD63341A60}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuctionPlatforn.Infrastructure", "AuctionPlatforn.Infrastructure\AuctionPlatforn.Infrastructure.csproj", "{A37E8304-55FC-41C6-B320-D0C916939A49}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E543C2F4-1E75-473E-8754-C14E85EA08A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E543C2F4-1E75-473E-8754-C14E85EA08A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E543C2F4-1E75-473E-8754-C14E85EA08A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E543C2F4-1E75-473E-8754-C14E85EA08A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1639A1F5-8E1F-482C-A24A-6B5C3677EAA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1639A1F5-8E1F-482C-A24A-6B5C3677EAA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1639A1F5-8E1F-482C-A24A-6B5C3677EAA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1639A1F5-8E1F-482C-A24A-6B5C3677EAA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5997F87-9E8F-4413-B83C-F8DD63341A60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5997F87-9E8F-4413-B83C-F8DD63341A60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5997F87-9E8F-4413-B83C-F8DD63341A60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5997F87-9E8F-4413-B83C-F8DD63341A60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A37E8304-55FC-41C6-B320-D0C916939A49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A37E8304-55FC-41C6-B320-D0C916939A49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A37E8304-55FC-41C6-B320-D0C916939A49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A37E8304-55FC-41C6-B320-D0C916939A49}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E543C2F4-1E75-473E-8754-C14E85EA08A6} = {33167B7E-41FD-487B-9E7F-864C4E18E49E}
+		{1639A1F5-8E1F-482C-A24A-6B5C3677EAA7} = {1B26561A-DF00-4DFC-A064-8D38C703154B}
+		{C5997F87-9E8F-4413-B83C-F8DD63341A60} = {D3C4C210-4523-47D8-B1A0-D30CFA1D02CB}
+		{A37E8304-55FC-41C6-B320-D0C916939A49} = {D3C4C210-4523-47D8-B1A0-D30CFA1D02CB}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7817AF7B-E912-4594-857C-772A0732D079}
+	EndGlobalSection
+EndGlobal
