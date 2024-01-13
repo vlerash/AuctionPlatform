@@ -36,7 +36,8 @@ namespace AuctionPlatform.Controllers
 
             if (result.Succeeded)
             {
-                return Ok(new { Message = "Login successful" });
+                var token = _accountService.GenerateAuthToken(userLoginDto.UserName);
+                return Ok(new { Message = "Login successful", Token = token });
             }
 
             return BadRequest(new { Message = "Login failed" });

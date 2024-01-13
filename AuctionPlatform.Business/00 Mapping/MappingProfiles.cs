@@ -14,6 +14,8 @@ namespace BlogManagementSystem.Business._00_Mapping
             CreateMap<UserDto, User>();
 
             CreateMap<UserRegisterDto, User>()
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
+                .ForMember(dest => dest.Surname, opt => opt.MapFrom(src => src.Surname))
                 .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.Username))
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email))
                 .ForMember(dest => dest.PasswordHash, opt => opt.MapFrom(src => src.Password))
@@ -23,7 +25,11 @@ namespace BlogManagementSystem.Business._00_Mapping
 
             #region Auction
             CreateMap<Auction, AuctionDto>();
+
             CreateMap<AuctionDto, Auction>();
+
+            CreateMap<Auction, AuctionCreateDto>();
+            CreateMap<AuctionCreateDto, Auction>();
             #endregion
         }
     }

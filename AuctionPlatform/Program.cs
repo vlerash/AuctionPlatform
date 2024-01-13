@@ -1,3 +1,4 @@
+using AuctionPlatform.Business._01_Common;
 using AuctionPlatform.Domain.Entities;
 using AuctionPlatform.Extensions;
 using AuctionPlatforn.Infrastructure;
@@ -5,6 +6,7 @@ using AutoMapper;
 using BlogManagementSystem.Business._00_Mapping;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,7 +30,11 @@ builder.Services.AddSingleton(mapper);
 builder.Services.AddAutoMapper(typeof(MappingProfiles).Assembly);
 
 // Add services to the container. 
-builder.Services.AddControllers();
+//builder.Services.AddControllers();
+
+builder.Services.AddControllers().AddJsonOptions(x =>
+                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

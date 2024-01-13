@@ -24,7 +24,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuctionPlatform.Business", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuctionPlatform.Domain", "AuctionPlatform.Domain\AuctionPlatform.Domain.csproj", "{C5997F87-9E8F-4413-B83C-F8DD63341A60}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuctionPlatforn.Infrastructure", "AuctionPlatforn.Infrastructure\AuctionPlatforn.Infrastructure.csproj", "{A37E8304-55FC-41C6-B320-D0C916939A49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuctionPlatforn.Infrastructure", "AuctionPlatforn.Infrastructure\AuctionPlatforn.Infrastructure.csproj", "{A37E8304-55FC-41C6-B320-D0C916939A49}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
