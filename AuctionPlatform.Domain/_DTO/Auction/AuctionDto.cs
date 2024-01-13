@@ -1,8 +1,9 @@
-﻿using AuctionPlatform.Domain.Enums;
+﻿using AuctionPlatform.Domain._DTO.User;
+using AuctionPlatform.Domain.Enums;
 
-namespace AuctionPlatform.Domain.Entities
+namespace AuctionPlatform.Domain._DTO.Auction
 {
-    public class Auction
+    public class AuctionDto
     {
         public int Id { get; set; }
         public string Title { get; set; }
@@ -10,12 +11,12 @@ namespace AuctionPlatform.Domain.Entities
         public decimal CurrentBid { get; set; }
         public DateTime? StartTime { get; set; }
         public DateTime? EndTime { get; set; }
-        public decimal MinimumBid { get; set; }
         public int? UserId { get; set; }
         public int? HighestBidderId { get; set; }
+        public decimal MinimumBid { get; set; }
         public AuctionStatusEnum AuctionStatus { get; set; }
 
-        public User? User { get; set; }
-        public User? HighestBidder { get; set; }
+        public UserDto? User { get; set; }
+        public UserDto? HighestBidder { get; set; }
     }
 }

@@ -19,4 +19,9 @@
     <ProjectReference Include="..\AuctionPlatforn.Infrastructure\AuctionPlatforn.Infrastructure.csproj" />
   </ItemGroup>
 
+
+	<ItemGroup>
+		<ProjectReference Include="..\AuctionPlatform.Business\AuctionPlatform.Business.csproj" />
+	</ItemGroup>
+
 </Project>
