@@ -1,4 +1,9 @@
+using AuctionPlatform.Domain.Entities;
+using AuctionPlatform.Extensions;
 using AuctionPlatforn.Infrastructure;
+using AutoMapper;
+using BlogManagementSystem.Business._00_Mapping;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,7 +11,23 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AuctionPlatformDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Add services to the container.
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+    .AddEntityFrameworkStores<AuctionPlatformDbContext>()
+    .AddDefaultTokenProviders();
+
+builder.Services.RegisterBusinessLayerDependencies();
+builder.Services.RegisterDataAccessLayerDependencies();
+
+#region AutoMapper
+var mappingConfig = new MapperConfiguration(mc => { mc.AddProfile(new MappingProfiles()); });
+var mapper = mappingConfig.CreateMapper();
+builder.Services.AddSingleton(mapper);
+#endregion
+
+// Register AutoMapper using the AddAutoMapper method
+builder.Services.AddAutoMapper(typeof(MappingProfiles).Assembly);
+
+// Add services to the container. 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -23,6 +44,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

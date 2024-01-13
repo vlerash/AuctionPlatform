@@ -1,9 +1,10 @@
 ﻿using AuctionPlatform.Domain.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace AuctionPlatforn.Infrastructure
 {
-    public class AuctionPlatformDbContext : DbContext
+    public class AuctionPlatformDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Auction> Auctions { get; set; }

@@ -13,7 +13,14 @@ namespace BlogManagementSystem.Business._00_Mapping
             CreateMap<User, UserDto>();
             CreateMap<UserDto, User>();
 
-            #endregion   
+            CreateMap<UserRegisterDto, User>()
+                .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.Username))
+                .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email))
+                .ForMember(dest => dest.PasswordHash, opt => opt.MapFrom(src => src.Password))
+                .ForMember(dest => dest.RegistrationDate, opt => opt.MapFrom(src => DateTime.Now))
+                .ForMember(dest => dest.WalletAmount, opt => opt.MapFrom(src => 1000.00m));
+            #endregion
+
             #region Auction
             CreateMap<Auction, AuctionDto>();
             CreateMap<AuctionDto, Auction>();

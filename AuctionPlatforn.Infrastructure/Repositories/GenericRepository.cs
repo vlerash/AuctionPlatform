@@ -284,7 +284,7 @@ public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEnt
 
     public void Dispose()
 
-    {
+        {
         Dispose(true);
         GC.SuppressFinalize(this);
     }
