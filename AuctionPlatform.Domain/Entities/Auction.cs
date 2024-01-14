@@ -18,5 +18,6 @@ namespace AuctionPlatform.Domain.Entities
 
         public User? User { get; set; }
         public User? HighestBidder { get; set; }
+        public virtual IList<Bid> Bids { get; set; }
     }
 }

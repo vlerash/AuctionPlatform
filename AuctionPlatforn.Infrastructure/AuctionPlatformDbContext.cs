@@ -8,6 +8,7 @@ namespace AuctionPlatforn.Infrastructure
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Auction> Auctions { get; set; }
+        public DbSet<Bid> Bids { get; set; }
 
         public AuctionPlatformDbContext(DbContextOptions<AuctionPlatformDbContext> options) : base(options)
         {

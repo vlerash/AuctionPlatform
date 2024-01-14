@@ -1,82 +1,135 @@
 ﻿using AuctionPlatform.Business.Auctions;
 using AuctionPlatform.Domain._DTO.Auction;
-using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AuctionPlatform.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class AuctionController : ControllerBase
     {
         private readonly IAuctionService _auctionService;
+        private readonly ILogger<AuctionController> _logger; 
 
-        public AuctionController(IAuctionService auctionService)
+        public AuctionController(IAuctionService auctionService, ILogger<AuctionController> logger)
         {
             _auctionService = auctionService;
+            _logger = logger;
         }
 
+        [Authorize]
         [HttpGet("getCurrentAuctionsByTimeLeftAscending")]
         public async Task<IActionResult> GetCurrentAuctionsByTimeLeftAscending()
         {
-            var auctions = await _auctionService.GetCurrentAuctionsByTimeLeftAscending();
-            return Ok(auctions);
+            try
+            {
+                var auctions = await _auctionService.GetCurrentAuctionsByTimeLeftAscending();
+                return Ok(auctions);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error retrieving current auctions by time left"); 
+                return StatusCode(500, new { Message = "Internal Server Error" });
+            }
         }
+
 
         [HttpGet("getActiveAuctions")]
         public async Task<IActionResult> GetActiveAuctions()
         {
-            var activeAuctions = await _auctionService.GetActiveAuctions();
-            return Ok(activeAuctions);
+            try
+            {
+                var activeAuctions = await _auctionService.GetActiveAuctions();
+                return Ok(activeAuctions);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error retrieving active auctions"); 
+                return StatusCode(500, new { Message = "Internal Server Error" });
+            }
         }
 
         [HttpPost("create")]
         public async Task<IActionResult> CreateAuction([FromBody] AuctionCreateDto auctionCreateDto)
         {
-            var createdAuction = await _auctionService.CreateAuction(auctionCreateDto);
-            return Ok(new { Message = "Auction created successfully." });
+            try
+            {
+                var createdAuction = await _auctionService.CreateAuction(auctionCreateDto);
+                return Ok(new { Message = "Auction created successfully." });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error creating auction"); 
+                return StatusCode(500, new { Message = "Internal Server Error" });
+            }
         }
 
         [HttpPost("placeBid")]
         public async Task<IActionResult> PlaceBid([FromBody] BidRequestDto bidRequest)
         {
-            var bidResponse = await _auctionService.PlaceBid(bidRequest);
+            try
+            {
+                var bidResponse = await _auctionService.PlaceBid(bidRequest);
 
-            if (bidResponse.Success)
-            {
-                return Ok(new { Success = true, Message = "Bid successful." });
+                if (bidResponse.Success)
+                {
+                    return Ok(new { Success = true, Message = "Bid successful." });
+                }
+                else
+                {
+                    return BadRequest(new { Success = false, Message = bidResponse.Message });
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return BadRequest(new { Success = false, Message = bidResponse.Message });
+                _logger.LogError(ex, "Error placing bid");
+                return StatusCode(500, new { Message = "Internal Server Error" });
             }
         }
 
         [HttpGet("getById")]
         public async Task<IActionResult> GetAuctionById(int auctionId)
         {
-            var auction = await _auctionService.GetAuctionById(auctionId);
-
-            if (auction == null)
+            try
             {
-                return NotFound(new { Success = false, Message = "Auction not found." });
-            }
+                var auction = await _auctionService.GetAuctionById(auctionId);
 
-            return Ok(auction);
+                if (auction == null)
+                {
+                    return NotFound(new { Success = false, Message = "Auction not found." });
+                }
+
+                return Ok(auction);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error retrieving auction by ID");
+                return StatusCode(500, new { Message = "Internal Server Error" });
+            }
         }
 
         [HttpDelete("delete")]
         public async Task<IActionResult> DeleteAuction(int id)
         {
-            var result = await _auctionService.Delete(id);
+            try
+            {
+                var result = await _auctionService.Delete(id);
 
-            if (result)
-            {
-                return Ok(new { Success = true, Message = "Auction deleted successfully." });
+                if (result)
+                {
+                    return Ok(new { Success = true, Message = "Auction deleted successfully." });
+                }
+                else
+                {
+                    return NotFound(new { Success = false, Message = "Auction not found or deletion failed." });
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return NotFound(new { Success = false, Message = "Auction not found or deletion failed." });
+                _logger.LogError(ex, "Error deleting auction"); 
+                return StatusCode(500, new { Message = "Internal Server Error" });
             }
         }
     }

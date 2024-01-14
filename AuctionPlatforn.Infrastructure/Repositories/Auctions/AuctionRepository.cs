@@ -30,6 +30,15 @@ namespace AuctionPlatforn.Infrastructure.Repositories.Auctions
                               .OrderBy(a => a.EndTime)
                               .ToListAsync();
         }
+        
+        public async Task<IList<Auction>> GetEndedAuctions()
+        {
+            return await DbSet.AsNoTracking()
+                              .Where(a => a.AuctionStatus == AuctionStatusEnum.Open && a.EndTime <= DateTime.Now)
+                              .Include(x => x.User)
+                              .Include(x => x.HighestBidder)
+                              .ToListAsync();
+        }
 
         public async Task<Auction> GetAuctionById(int auctionId)
         {
@@ -38,5 +47,6 @@ namespace AuctionPlatforn.Infrastructure.Repositories.Auctions
                 .Include(x => x.HighestBidder) 
                 .FirstOrDefaultAsync(a => a.Id == auctionId);
         }
+
     }
 }

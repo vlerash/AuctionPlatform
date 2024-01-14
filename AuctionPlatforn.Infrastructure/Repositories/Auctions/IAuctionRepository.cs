@@ -7,5 +7,6 @@ namespace AuctionPlatforn.Infrastructure.Repositories.Auctions
         Task<IList<Auction>> GetActiveAuctions();
         Task<Auction> GetAuctionById(int auctionId);
         Task<IList<Auction>> GetCurrentAuctionsByTimeLeftAscending();
+        Task<IList<Auction>> GetEndedAuctions();
     }
 }

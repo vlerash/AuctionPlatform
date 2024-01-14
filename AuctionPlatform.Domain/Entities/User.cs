@@ -16,5 +16,6 @@
 
         // Navigation property for auctions where the user is the highest bidder
         public virtual IList<Auction> BiddedAuctions { get; set; }
+        public virtual IList<Bid> PlacedBids { get; set; }
     }
 }
