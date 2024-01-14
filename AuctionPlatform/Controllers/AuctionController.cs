@@ -20,7 +20,7 @@ namespace AuctionPlatform.Controllers
         }
 
         [Authorize]
-        [HttpGet("getCurrentAuctionsByTimeLeftAscending")]
+        [HttpGet("getCurrentAuctions")]
         public async Task<IActionResult> GetCurrentAuctionsByTimeLeftAscending()
         {
             try
@@ -31,22 +31,6 @@ namespace AuctionPlatform.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error retrieving current auctions by time left"); 
-                return StatusCode(500, new { Message = "Internal Server Error" });
-            }
-        }
-
-
-        [HttpGet("getActiveAuctions")]
-        public async Task<IActionResult> GetActiveAuctions()
-        {
-            try
-            {
-                var activeAuctions = await _auctionService.GetActiveAuctions();
-                return Ok(activeAuctions);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error retrieving active auctions"); 
                 return StatusCode(500, new { Message = "Internal Server Error" });
             }
         }

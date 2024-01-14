@@ -1,4 +1,5 @@
 ﻿using AuctionPlatform.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace AuctionPlatforn.Infrastructure.Repositories.Users
 {
@@ -8,9 +9,12 @@ namespace AuctionPlatforn.Infrastructure.Repositories.Users
         {
         }
 
-        public async Task<User> GetUserByIdAsync(int userId)
+        public async Task<User> GetUserById(int userId)
         {
-            return await DbSet.FindAsync(userId);
+            return await DbSet.Include(x => x.CreatedAuctions)
+                            //.Include(x => x.BiddedAuctions)
+                            .Include(x => x.PlacedBids)
+                            .FirstOrDefaultAsync();
         }
     }
 }

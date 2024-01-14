@@ -53,46 +53,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
-//builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-//    .AddJwtBearer(options =>
-//    {
-//        options.TokenValidationParameters = new TokenValidationParameters
-//        {
-//            ValidateIssuer = true,
-//            ValidateAudience = true,
-//            ValidateLifetime = true,
-//            ValidateIssuerSigningKey = true,
-//            ValidIssuer = builder.Configuration["Jwt:Issuer"],
-//            ValidAudience = builder.Configuration["Jwt:Audience"],
-//            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"]))
-//        };
-
-//        options.Events = new JwtBearerEvents
-//        {
-//            OnAuthenticationFailed = context =>
-//            {
-//                Log.Logger.Error("Authentication failed: {0}", context.Exception);
-//                return Task.CompletedTask;
-//            },
-//            OnTokenValidated = context =>
-//            {
-//                Log.Logger.Information("Token validated: {0}", context.SecurityToken);
-//                return Task.CompletedTask;
-//            },
-//            OnMessageReceived = context =>
-//            {
-//                Log.Logger.Information("Message received: {0}", context.Request.Headers);
-//                return Task.CompletedTask;
-//            },
-//            // Add other event handlers if needed
-//        };
-//    });
 
 // Add Swagger/OpenAPI
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Your API Name", Version = "v1" });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Auction Platform", Version = "v1" });
 
     // Configure JWT Bearer authentication for Swagger
     var securityScheme = new OpenApiSecurityScheme
@@ -125,6 +91,13 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
+    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Auction Platform"));
+}
+
+app.UseSwagger();
+
+if (app.Environment.IsDevelopment())
+{
     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Auction Platform"));
 }
 

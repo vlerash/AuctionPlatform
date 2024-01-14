@@ -9,7 +9,6 @@ namespace AuctionPlatform.Business.Auctions
         void CheckAndCompleteAuctions();
         Task<AuctionDto> CreateAuction(AuctionCreateDto auctionCreateDto);
         Task<bool> Delete(int id);
-        Task<IList<AuctionDto>> GetActiveAuctions();
         Task<AuctionDto> GetAuctionById(int auctionId);
         Task<IList<AuctionDto>> GetCurrentAuctionsByTimeLeftAscending();
         Task<Response.Response> PlaceBid(BidRequestDto bidRequestDto);

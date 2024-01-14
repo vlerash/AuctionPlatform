@@ -11,10 +11,7 @@
         public DateTime RegistrationDate { get; set; }
         public decimal WalletAmount { get; set; }
 
-        // Navigation property for auctions created by the user
         public virtual IList<Auction> CreatedAuctions { get; set; }
-
-        // Navigation property for auctions where the user is the highest bidder
         public virtual IList<Auction> BiddedAuctions { get; set; }
         public virtual IList<Bid> PlacedBids { get; set; }
     }

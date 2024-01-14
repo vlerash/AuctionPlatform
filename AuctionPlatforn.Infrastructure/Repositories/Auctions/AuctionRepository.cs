@@ -11,22 +11,13 @@ namespace AuctionPlatforn.Infrastructure.Repositories.Auctions
         {
         }
 
-        public async Task<IList<Auction>> GetActiveAuctions()
-        {
-            return await DbSet.AsNoTracking()
-                              .Where(a => a.AuctionStatus == AuctionStatusEnum.Open && a.EndTime > DateTime.Now)
-                              .Include(x => x.User)
-                              .Include(x => x.HighestBidder)
-                              .OrderBy(x=>x.Id)
-                              .ToListAsync();
-        }
-
         public async Task<IList<Auction>> GetCurrentAuctionsByTimeLeftAscending()
         {
             return await DbSet.AsNoTracking()
                               .Where(a => a.AuctionStatus == AuctionStatusEnum.Open && a.EndTime > DateTime.Now)
                               .Include(x => x.User)
                               .Include(x => x.HighestBidder)
+                              .Include(x => x.Bids)
                               .OrderBy(a => a.EndTime)
                               .ToListAsync();
         }
@@ -37,6 +28,7 @@ namespace AuctionPlatforn.Infrastructure.Repositories.Auctions
                               .Where(a => a.AuctionStatus == AuctionStatusEnum.Open && a.EndTime <= DateTime.Now)
                               .Include(x => x.User)
                               .Include(x => x.HighestBidder)
+                              .Include(x => x.Bids)
                               .ToListAsync();
         }
 
@@ -45,8 +37,8 @@ namespace AuctionPlatforn.Infrastructure.Repositories.Auctions
             return await DbSet
                 .Include(x => x.User) 
                 .Include(x => x.HighestBidder) 
+                .Include(x => x.Bids) 
                 .FirstOrDefaultAsync(a => a.Id == auctionId);
         }
-
     }
 }

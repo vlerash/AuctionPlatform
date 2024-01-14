@@ -30,13 +30,6 @@ namespace AuctionPlatform.Business.Auctions
             return _mapper.Map<IList<AuctionDto>>(auctions);
         }
 
-        public async Task<IList<AuctionDto>> GetActiveAuctions()
-        {
-            var activeAuctions = await _auctionRepository.GetActiveAuctions();
-
-            return activeAuctions.Select(auction => _mapper.Map<AuctionDto>(auction)).ToList();
-        }
-
         public async Task<AuctionDto> CreateAuction(AuctionCreateDto auctionCreateDto)
         {
             var mappedAuction = _mapper.Map<Auction>(auctionCreateDto);
@@ -46,7 +39,6 @@ namespace AuctionPlatform.Business.Auctions
             return _mapper.Map<AuctionDto>(createdAuction);
         }
 
-     
         public async Task<Response.Response> PlaceBid(BidRequestDto bidRequestDto)
         {
             var auction = await _auctionRepository.GetAuctionById(bidRequestDto.AuctionId);
@@ -56,7 +48,7 @@ namespace AuctionPlatform.Business.Auctions
                 return new Response.Response { Success = false, Message = "Invalid bid." };
             }
 
-            var bidder = await _userRepository.GetUserByIdAsync(bidRequestDto.BidderUserId);
+            var bidder = await _userRepository.GetUserById(bidRequestDto.BidderUserId);
             if (bidder == null || bidder.WalletAmount < bidRequestDto.BidAmount)
             {
                 return new Response.Response { Success = false, Message = "Bidder has insufficient funds." };
@@ -88,7 +80,7 @@ namespace AuctionPlatform.Business.Auctions
 
                     return new Response.Response { Success = true, Message = "Bid successful." };
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     return new Response.Response { Success = false, Message = "An error occurred while placing the bid." };
                 }
