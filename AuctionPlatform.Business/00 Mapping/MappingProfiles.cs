@@ -1,4 +1,5 @@
 ﻿using AuctionPlatform.Domain._DTO.Auction;
+using AuctionPlatform.Domain._DTO.Bid;
 using AuctionPlatform.Domain._DTO.User;
 using AuctionPlatform.Domain.Entities;
 using AutoMapper;
@@ -25,11 +26,15 @@ namespace BlogManagementSystem.Business._00_Mapping
 
             #region Auction
             CreateMap<Auction, AuctionDto>();
-
             CreateMap<AuctionDto, Auction>();
 
             CreateMap<Auction, AuctionCreateDto>();
             CreateMap<AuctionCreateDto, Auction>();
+            #endregion
+
+            #region Bid
+            CreateMap<Bid, BidDto>();
+            CreateMap<BidDto, Bid>();
             #endregion
         }
     }

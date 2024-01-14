@@ -1,4 +1,5 @@
 ﻿using AuctionPlatform.Domain._DTO.Auction;
+using AuctionPlatform.Domain._DTO.Bid;
 
 namespace AuctionPlatform.Domain._DTO.User
 {
@@ -14,6 +15,7 @@ namespace AuctionPlatform.Domain._DTO.User
         public decimal WalletAmount { get; set; }
 
         public virtual IList<AuctionDto> CreatedAuctions { get; set; }
-        public virtual IList<AuctionDto> BiddedAuctions { get; set; }
+        //public virtual IList<AuctionDto> BiddedAuctions { get; set; }
+        public virtual IList<BidDto> PlacedBids{ get; set; }
     }
 }
