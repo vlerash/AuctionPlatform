@@ -14,8 +14,5 @@ namespace AuctionPlatform.Domain._DTO.Auction
         public int? HighestBidderId { get; set; }
         public decimal MinimumBid { get; set; }
         public AuctionStatusEnum AuctionStatus { get; set; }
-
-        //public UserDto? User { get; set; }
-        //public UserDto? HighestBidder { get; set; }
     }
 }

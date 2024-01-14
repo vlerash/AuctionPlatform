@@ -147,7 +147,6 @@ public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEnt
         {
             //Lambda expression
             var expression = Expression.Call(objProperty, "Contains", null, constant);
-            //var tt = Expression.Call(objProperty, "Contains", null, Expression.Constant(constant, typeof(string)), Expression.Constant(StringComparison.OrdinalIgnoreCase));
             lambda = Expression.Lambda<Func<TEntity, bool>>(expression, obj);
         }
         else

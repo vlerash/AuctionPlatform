@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace AuctionPlatform.Controllers
 {
     [Authorize]
-    [Route("api/[controller]")]
+    [Route("/")]
     [ApiController]
     public class AuctionController : ControllerBase
     {
@@ -73,7 +73,7 @@ namespace AuctionPlatform.Controllers
             }
         }
 
-        [HttpGet("getById")]
+        [HttpGet("getAuctionById")]
         public async Task<IActionResult> GetAuctionById(int auctionId)
         {
             try

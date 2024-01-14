@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AuctionPlatform.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("/")]
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -16,7 +16,7 @@ namespace AuctionPlatform.Controllers
             _logger = logger;
         }
 
-        [HttpGet("getById")]
+        [HttpGet("getUserById")]
         public async Task<IActionResult> GetUserById(int userId)
         {
             try

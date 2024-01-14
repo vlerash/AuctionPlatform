@@ -12,7 +12,6 @@ namespace AuctionPlatforn.Infrastructure.Repositories.Users
         public async Task<User> GetUserById(int userId)
         {
             return await DbSet.Include(x => x.CreatedAuctions)
-                            //.Include(x => x.BiddedAuctions)
                             .Include(x => x.PlacedBids)
                             .FirstOrDefaultAsync();
         }
